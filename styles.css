@@ -81,7 +81,7 @@ section.cajaDashboar {
 
 /* Si el aside está oculto (sin menú lateral) */
 body.aside-oculto section.cajaDashboar {
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 body.aside-oculto .Dashboard:nth-child(4) {
