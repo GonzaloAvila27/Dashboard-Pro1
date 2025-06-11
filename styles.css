@@ -23,87 +23,7 @@ header {
     align-items: center;
 }
 
-header nav button {
-    background: none;
-    color: white;
-    border: none;
-    margin: 0 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Layout general */
-aside.desplegable {
-    width: 250px;
-    background-color: #ffffff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    transition: transform 0.3s ease-in-out;
-}
-
-aside.desplegable.oculto {
-    transform: translateX(-100%);
-    position: absolute;
-    z-index: 1000;
-}
-
-/* Sección de dashboards */
-section.cajaDashboar {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    gap: 20px;
-    padding: 20px;
-    flex: 1;
-    transition: all 0.3s ease-in-out;
-}
-
-.Dashboard {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    min-height: 25vh;
-}
-
-.headerDash {
-    padding: 10px;
-    background-color: #eeeeee;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-.dashboardProper {
-    flex: 1;
-    padding: 20px;
-}
-
-/* Si el aside está oculto (sin menú lateral) */
-body.aside-oculto section.cajaDashboar {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-body.aside-oculto .Dashboard:nth-child(4) {
-    grid-column: span 3;
-}
-
-/* Vista en celular */
-@media (max-width: 768px) {
-    section.cajaDashboar {
-        grid-template-columns: 1fr;
-    }
-
-    .Dashboard {
-        grid-column: span 1;
-    }
-
-    aside.desplegable {
-        width: 100%;
-        transform: translateX(-100%);
-    }
-}
-/* Botón flotante a la izquierda */
+/* Botón flotante para mostrar/ocultar el aside */
 .toggleAsideBtn {
     position: fixed;
     top: 80px;
@@ -118,33 +38,28 @@ body.aside-oculto .Dashboard:nth-child(4) {
     z-index: 1001;
 }
 
-/* Aside como menú lateral fijo */
-aside.desplegable {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
+/* Contenedor principal debajo del header */
+main.contenido {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Aside como panel lateral */
+main.contenido aside.desplegable {
     width: 250px;
     background-color: #ffffff;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    flex-shrink: 0;
 }
 
-aside.desplegable.oculto {
-    transform: translateX(-100%);
+main.contenido aside.desplegable.oculto {
+    display: none;
 }
 
-/* Ajusta el layout principal con aside visible u oculto */
-body:not(.aside-oculto) .cajaDashboar {
-    margin-left: 250px;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-body.aside-oculto .cajaDashboar {
-    margin-left: 0;
-}
+/* Estilo interno del aside */
 aside h2 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -174,4 +89,51 @@ aside button {
     margin-top: 15px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* Sección de dashboards */
+section.cajaDashboar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.Dashboard {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    min-height: 25vh;
+}
+
+.headerDash {
+    padding: 10px;
+    background-color: #eeeeee;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboardProper {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Responsive: en móviles, todo en una columna */
+@media (max-width: 768px) {
+    section.cajaDashboar {
+        grid-template-columns: 1fr;
+    }
+
+    .Dashboard {
+        grid-column: span 1;
+    }
+
+    main.contenido aside.desplegable {
+        width: 100%;
+    }
 }
