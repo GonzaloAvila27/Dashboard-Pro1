@@ -5,29 +5,29 @@
     <title>Mineria Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-<button class="toggleAsideBtn" onclick="toggleAside()">☰</button>
-    <header>
-        <span>DATA USA etc</span>
-        <nav>
-            <button>Reports</button>
-            <button>Map</button>
-            <button>Builder</button>
-            <button>About us</button>
-        </nav>
-    </header>
 
-    <main class="contenido">
-        <aside class="desplegable oculto">
-            <h2>Panel de Configuracion</h2>
-            <ul>
-                <li><a href="#">Configuración</a></li>
-                <li><a href="#">Ver</a></li>
-            </ul>
-            <hr>
-            <button>Opción extra</button>
-        </aside>
+    <!-- NAV FIJO LATERAL -->
+    <aside class="sidebar">
+        <div class="logo">☰</div>
+        <nav class="nav-icons">
+            <button onclick="mostrarPanel('usuario')" title="Usuario">👤</button>
+            <button onclick="mostrarPanel('mapa')" title="Mapa">🗺️</button>
+            <button onclick="mostrarPanel('builder')" title="Builder">🛠️</button>
+            <button onclick="mostrarPanel('reportes')" title="Reportes">📊</button>
+        </nav>
+    </aside>
+
+    <!-- PANEL CONFIGURACIÓN DESPLEGABLE -->
+    <aside class="panel-config oculto" id="panelConfig">
+        <div id="contenidoPanel"></div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+        <header>
+            <span>DATA USA etc</span>
+        </header>
 
         <section class="cajaDashboar">
             <div class="Dashboard"><div class="headerDash">Dashboard 1</div><div class="dashboardProper"></div></div>
@@ -35,11 +35,11 @@
             <div class="Dashboard"><div class="headerDash">Dashboard 3</div><div class="dashboardProper"></div></div>
             <div class="Dashboard"><div class="headerDash">Dashboard 4</div><div class="dashboardProper"></div></div>
         </section>
-    </main>
 
-    <footer>
-        <p>no footer</p>
-    </footer>
+        <footer>
+            <p>no footer</p>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

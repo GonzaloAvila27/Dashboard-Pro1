@@ -1,106 +1,69 @@
-/* Reset básico */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
 }
-
 body {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+    overflow: hidden;
+}
+.sidebar {
+    width: 60px;
+    background-color: #0b2a4a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+.sidebar .logo {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.nav-icons button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+.panel-config {
+    width: 250px;
+    background-color: #ffffff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+}
+.panel-config.oculto {
+    display: none;
+}
+.main-content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f4f4f4;
 }
-
-/* Header */
 header {
     background-color: #0b2a4a;
     color: white;
     padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 18px;
 }
-
-/* Botón flotante para mostrar/ocultar el aside */
-.toggleAsideBtn {
-    position: fixed;
-    top: 80px;
-    left: 10px;
-    background-color: #0b2a4a;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-/* Contenedor principal debajo del header */
-main.contenido {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-}
-
-/* Aside como panel lateral */
-main.contenido aside.desplegable {
-    width: 250px;
-    background-color: #ffffff;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    transition: all 0.3s ease-in-out;
-    flex-shrink: 0;
-}
-
-main.contenido aside.desplegable.oculto {
-    display: none;
-}
-
-/* Estilo interno del aside */
-aside h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-aside ul {
-    list-style: none;
-    padding: 0;
-}
-
-aside ul li {
-    margin: 10px 0;
-}
-
-aside ul li a {
-    color: #0b2a4a;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-}
-
-aside button {
-    background-color: #0b2a4a;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-top: 15px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Sección de dashboards */
 section.cajaDashboar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
     flex: 1;
-    transition: all 0.3s ease-in-out;
+    overflow-y: auto;
 }
-
 .Dashboard {
     background-color: white;
     border: 1px solid #ddd;
@@ -109,31 +72,31 @@ section.cajaDashboar {
     flex-direction: column;
     min-height: 25vh;
 }
-
 .headerDash {
     padding: 10px;
     background-color: #eeeeee;
     font-weight: bold;
-    display: flex;
-    justify-content: space-between;
 }
-
 .dashboardProper {
     flex: 1;
     padding: 20px;
 }
-
-/* Responsive: en móviles, todo en una columna */
+footer {
+    padding: 10px;
+    text-align: center;
+    background-color: #ddd;
+}
 @media (max-width: 768px) {
     section.cajaDashboar {
         grid-template-columns: 1fr;
     }
-
-    .Dashboard {
-        grid-column: span 1;
+    .sidebar {
+        width: 50px;
     }
-
-    main.contenido aside.desplegable {
+    .nav-icons button {
+        font-size: 20px;
+    }
+    .panel-config {
         width: 100%;
     }
 }
