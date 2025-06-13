@@ -81,6 +81,15 @@ section.cajaDashboar {
     flex: 1;
     padding: 20px;
 }
+.myChart {
+    max-width: fit-content;
+    margin: 3px auto;
+    background: white;
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
 footer {
     padding: 10px;
     text-align: center;
@@ -99,4 +108,9 @@ footer {
     .panel-config {
         width: 100%;
     }
+}
+canvas {
+    display: relative;
+    width: 100% !important;
+    height: auto !important;
 }

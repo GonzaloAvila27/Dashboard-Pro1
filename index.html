@@ -9,7 +9,7 @@
 
     <!-- NAV FIJO LATERAL -->
     <aside class="sidebar">
-        <div class="logo">☰</div>
+        <div class="logo">LOGO</div>
         <nav class="nav-icons">
             <button onclick="mostrarPanel('usuario')" title="Usuario">👤</button>
             <button onclick="mostrarPanel('mapa')" title="Mapa">🗺️</button>
@@ -30,17 +30,31 @@
         </header>
 
         <section class="cajaDashboar">
-            <div class="Dashboard"><div class="headerDash">Dashboard 1</div><div class="dashboardProper"></div></div>
-            <div class="Dashboard"><div class="headerDash">Dashboard 2</div><div class="dashboardProper"></div></div>
-            <div class="Dashboard"><div class="headerDash">Dashboard 3</div><div class="dashboardProper"></div></div>
-            <div class="Dashboard"><div class="headerDash">Dashboard 4</div><div class="dashboardProper"></div></div>
+            <div class="Dashboard">
+                        <div class="headerDash">Dashboard 1</div>
+                            <h1>Chart.js Line Chart</h1>
+                            <!--<canvas id="myChart">chard</canvas> -->
+                <div class="dashboardProper">
+                        <canvas id="myChart">chard</canvas>
+                </div>
+            </div>
+            
+            <div class="Dashboard"><div class="headerDash">Dashboard 2</div>
+            
+            <div class="dashboardProper"></div></div>
+            <div class="Dashboard"><div class="headerDash">Dashboard 3</div>
+            
+            <div class="dashboardProper"></div></div>
+            <div class="Dashboard"><div class="headerDash">Dashboard 4</div>
+            
+            <div class="dashboardProper"></div></div>
         </section>
 
         <footer>
             <p>no footer</p>
         </footer>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
