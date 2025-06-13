@@ -33,7 +33,7 @@ body {
     cursor: pointer;
 }
 .panel-config {
-    width: 250px;
+    width: 25vh;
     background-color: #ffffff;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -70,7 +70,6 @@ section.cajaDashboar {
     border-radius: 6px;
     display: flex;
     flex-direction: column;
-    min-height: 25vh;
 }
 .headerDash {
     padding: 10px;
@@ -79,7 +78,7 @@ section.cajaDashboar {
 }
 .dashboardProper {
     flex: 1;
-    padding: 20px;
+    padding: 10px;
 }
 .myChart {
     max-width: fit-content;
@@ -88,13 +87,9 @@ section.cajaDashboar {
     padding: 5px;
     border-radius: 1px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-}
-footer {
-    padding: 10px;
-    text-align: center;
-    background-color: #ddd;
-}
+
 @media (max-width: 768px) {
     section.cajaDashboar {
         grid-template-columns: 1fr;
@@ -108,9 +103,26 @@ footer {
     .panel-config {
         width: 100%;
     }
-}
+} 
 canvas {
-    display: relative;
+    display: flex;
     width: 100% !important;
     height: auto !important;
+} 
+.filters {
+    display: relative;
+    gap: 2px;
+    margin-bottom: 5px;
+    align-self: top;
+}
+
+.filters div {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
