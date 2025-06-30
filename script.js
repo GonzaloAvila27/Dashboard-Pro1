@@ -84,3 +84,78 @@ function updateChart() {
 
 chartTypeSelect.addEventListener('change', updateChart);
 monthFilterSelect.addEventListener('change', updateChart);
+
+
+
+new Chart(document.getElementById('histogramaChart'), {
+    type: 'bar',
+    data: {
+        labels: ['0-10', '10-20', '20-30', '30-40', '40+'],
+        datasets: [{
+            label: 'Cantidad',
+            data: [5, 15, 25, 10, 3],
+            backgroundColor: '#f28e2c'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+
+
+new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+        labels: ['6 AM', '9 AM', '12 PM', '3 PM', '6 PM'],
+        datasets: [{
+            label: 'Voltaje (kV)',
+            data: [220, 230, 225, 215, 210],
+            borderColor: '#e15759',
+            tension: 0.4,
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' }
+        }
+    }
+});
+
+new Chart(document.getElementById('doughnutChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Excavadoras', 'Camiones', 'Trituradoras'],
+        datasets: [{
+            data: [40, 30, 30],
+            backgroundColor: ['#76b7b2', '#59a14f', '#edc948']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'right' }
+        }
+    }
+});
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie'],
+        datasets: [{
+            label: 'Toneladas',
+            data: [120, 150, 180, 100, 200],
+            backgroundColor: '#4e79a7'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});

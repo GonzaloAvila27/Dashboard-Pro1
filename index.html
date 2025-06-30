@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,9 +31,10 @@
         </header>
 
         <section class="cajaDashboar">
-            <div class="Dashboard"><div class="headerDash">Line chart 1</div>
-        
-            <div class="dashboardProper">
+            <!-- DASHBOARD 1 -->
+            <div class="Dashboard">
+                <div class="headerDash">Line chart 1</div>
+                <div class="dashboardProper">
                     <div class="filters">
                         <div>
                             <label for="chartType">Tipo de Gráfico:</label>
@@ -41,44 +43,49 @@
                                 <option value="bar">Barras</option>
                             </select>
                         </div>
-                            <div>
-                                <label for="monthFilter">Filtrar por Mes:</label>
-                                <select id="monthFilter">
-                                    <option value="all">Todos</option>
-                                    <option value="January">Enero</option>
-                                    <option value="February">Febrero</option>
-                                    <option value="March">Marzo</option>
-                                    <option value="April">Abril</option>
-                                    <option value="May">Mayo</option>
-                                    <option value="June">Junio</option>
-                                </select>
-                            </div>
-                        <canvas id="myChart">chard</canvas>
+                        <div>
+                            <label for="monthFilter">Filtrar por Mes:</label>
+                            <select id="monthFilter">
+                                <option value="all">Todos</option>
+                                <option value="January">Enero</option>
+                                <option value="February">Febrero</option>
+                                <option value="March">Marzo</option>
+                                <option value="April">Abril</option>
+                                <option value="May">Mayo</option>
+                                <option value="June">Junio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas id="myChart">chart</canvas>
                 </div>
             </div>
-            </div>
-            <div class="Dashboard"><div class="headerDash">Dashboard 2</div>
-            
-                <div class="dashboardProper">
 
+            <!-- DASHBOARD 2 -->
+            <div class="Dashboard">
+                <div class="headerDash">Dashboard 2</div>
+                <div class="dashboardProper">
+                    <canvas id="barChart">chart</canvas>
                 </div>
             </div>
-            
-            <div class="Dashboard"><div class="headerDash">Dashboard 3</div>
-            
-                <div class="dashboardProper">
 
+            <!-- DASHBOARD 3 -->
+            <div class="Dashboard">
+                <div class="headerDash">Dashboard 3</div>
+                <div class="dashboardProper">
+                    <canvas id="histogramaChart">chart</canvas>
                 </div>
             </div>
-            <div class="Dashboard"><div class="headerDash">Dashboard 4</div>
-            
-                <div class="dashboardProper">
 
+            <!-- DASHBOARD 4 -->
+            <div class="Dashboard">
+                <div class="headerDash">Dashboard 4</div>
+                <div class="dashboardProper">
+                    <canvas id="doughnutChart">chart</canvas>
                 </div>
             </div>
         </section>
-
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
