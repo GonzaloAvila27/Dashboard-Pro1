@@ -25,68 +25,60 @@
     </aside>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-content">
-        <header>
-            <span>DATA USA etc</span>
-        </header>
+ <div class="main-content">
+  <header>
+    <span>DATA USA etc</span>
+  </header>
 
-        <section class="cajaDashboar">
-            <!-- DASHBOARD 1 -->
-            <div class="Dashboard">
-                <div class="headerDash">Line chart 1</div>
-                <div class="dashboardProper">
-                    <div class="filters">
-                        <div>
-                            <label for="chartType">Tipo de Gráfico:</label>
-                            <select id="chartType">
-                                <option value="line">Línea</option>
-                                <option value="bar">Barras</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="monthFilter">Filtrar por Mes:</label>
-                            <select id="monthFilter">
-                                <option value="all">Todos</option>
-                                <option value="January">Enero</option>
-                                <option value="February">Febrero</option>
-                                <option value="March">Marzo</option>
-                                <option value="April">Abril</option>
-                                <option value="May">Mayo</option>
-                                <option value="June">Junio</option>
-                            </select>
-                        </div>
-                    </div>
-                    <canvas id="myChart">chart</canvas>
-                </div>
-            </div>
-
-            <!-- DASHBOARD 2 -->
-            <div class="Dashboard">
-                <div class="headerDash">Dashboard 2</div>
-                <div class="dashboardProper">
-                    <canvas id="barChart">chart</canvas>
-                </div>
-            </div>
-
-            <!-- DASHBOARD 3 -->
-            <div class="Dashboard">
-                <div class="headerDash">Dashboard 3</div>
-                <div class="dashboardProper">
-                    <canvas id="histogramaChart">chart</canvas>
-                </div>
-            </div>
-
-            <!-- DASHBOARD 4 -->
-            <div class="Dashboard">
-                <div class="headerDash">Dashboard 4</div>
-                <div class="dashboardProper">
-                    <canvas id="doughnutChart">chart</canvas>
-                </div>
-            </div>
-        </section>
+  <section class="cajaDashboar">
+    <!-- 1. Treemap -->
+    <div class="Dashboard">
+      <div class="headerDash">Pokémon por Tipo</div>
+      <div class="dashboardProper">
+        <canvas id="chartTipos"></canvas>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <!-- 2. Barras -->
+    <div class="Dashboard">
+      <div class="headerDash">Promedio de Ataque por Tipo</div>
+      <div class="dashboardProper">
+        <canvas id="chartAtaque"></canvas>
+      </div>
+    </div>
+
+      <!-- 3. Radar -->
+      <div class="Dashboard">
+        <div class="headerDash">Comparativa de Stats Promedio</div>
+        <div class="dashboardProper">
+          <div style="margin-bottom:8px; display:flex; gap:8px; align-items:center;">
+            <label for="typeSelector">Tipo:</label>
+            <select id="typeSelector">
+              <option value="__ALL__">Todos</option>
+              <!-- Las opciones reales se cargan desde JS -->
+            </select>
+          </div>
+          <canvas id="chartRadar"></canvas>
+        </div>
+      </div>
+
+    <!-- 4. Heatmap -->
+    <div class="Dashboard">
+      <div class="headerDash">Heatmap de Métricas por Tipo</div>
+      <div class="dashboardProper">
+        <canvas id="chartHeatmap"></canvas>
+      </div>
+    </div>
+  </section>
+</div>
+     </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.2.0/dist/chartjs-chart-treemap.min.js"></script>
+<script src="script.js"></script>
+
+
+
 </body>
 </html>
