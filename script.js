@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================
   // CONFIG
   // ================================
-  const MAX_POKES = 300;                    // cuántos pokémon traer (ajustá según gusto)
+  const MAX_POKES = 300;                    // cuántos pokémon traer
   const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 horas
   const CACHE_KEY = `poke_cache_v1_${MAX_POKES}`;
   const palette = [
