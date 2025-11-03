@@ -1,161 +1,152 @@
-const ctx = document.getElementById('myChart').getContext('2d');
+// =======================
+// Utilidades UI del panel
+// =======================
 function mostrarPanel(seccion) {
-    const panel = document.getElementById('panelConfig');
-    const contenido = document.getElementById('contenidoPanel');
+  const panel = document.getElementById('panelConfig');
+  const contenido = document.getElementById('contenidoPanel');
 
-    panel.classList.remove('oculto');
+  panel.classList.remove('oculto');
 
-    switch (seccion) {
-        case 'usuario':
-            contenido.innerHTML = "<h2>Datos de Usuario</h2><p>Sección de login / perfil</p>";
-            break;
-        case 'mapa':
-            contenido.innerHTML = "<h2>Mapa</h2><p>Contenido relacionado al mapa</p>";
-            break;
-        case 'builder':
-            contenido.innerHTML = "<h2>Builder</h2><p>Zona de construcción</p>";
-            break;
-        case 'reportes':
-            contenido.innerHTML = "<h2>Reportes</h2><p>Informes y estadísticas</p>";
-            break;
-        default:
-            contenido.innerHTML = "<p>Seleccioná una sección</p>";
-    }
+  switch (seccion) {
+    case 'usuario':
+      contenido.innerHTML = "<h2>Datos de Usuario</h2><p>Sección de login / perfil</p>";
+      break;
+    case 'mapa':
+      contenido.innerHTML = "<h2>Mapa</h2><p>Contenido relacionado al mapa</p>";
+      break;
+    case 'builder':
+      contenido.innerHTML = "<h2>Builder</h2><p>Zona de construcción</p>";
+      break;
+    case 'reportes':
+      contenido.innerHTML = "<h2>Reportes</h2><p>Informes y estadísticas</p>";
+      break;
+    default:
+      contenido.innerHTML = "<p>Seleccioná una sección</p>";
+  }
 }
 
+// =======================
+// Datos de ejemplo
+// =======================
+const pokemons = [
+  { id: 1,  name: "Bulbasaur",  type: "Grass",    stats:{ hp:45, attack:49, defense:49, spAtk:65, spDef:65, speed:45 }, baseExp: 64 },
+  { id: 4,  name: "Charmander", type: "Fire",     stats:{ hp:39, attack:52, defense:43, spAtk:60, spDef:50, speed:65 }, baseExp: 62 },
+  { id: 7,  name: "Squirtle",   type: "Water",    stats:{ hp:44, attack:48, defense:65, spAtk:50, spDef:64, speed:43 }, baseExp: 63 },
+  { id: 10, name: "Caterpie",   type: "Bug",      stats:{ hp:45, attack:30, defense:35, spAtk:20, spDef:20, speed:45 }, baseExp: 39 },
+  { id: 13, name: "Weedle",     type: "Bug",      stats:{ hp:40, attack:35, defense:30, spAtk:20, spDef:20, speed:50 }, baseExp: 39 },
+  { id: 16, name: "Pidgey",     type: "Flying",   stats:{ hp:40, attack:45, defense:40, spAtk:35, spDef:35, speed:56 }, baseExp: 50 },
+  { id: 19, name: "Rattata",    type: "Normal",   stats:{ hp:30, attack:56, defense:35, spAtk:25, spDef:35, speed:72 }, baseExp: 51 },
+  { id: 25, name: "Pikachu",    type: "Electric", stats:{ hp:35, attack:55, defense:40, spAtk:50, spDef:50, speed:90 }, baseExp: 112 },
+  { id: 27, name: "Sandshrew",  type: "Ground",   stats:{ hp:50, attack:75, defense:85, spAtk:20, spDef:30, speed:40 }, baseExp: 60 },
+  { id: 35, name: "Clefairy",   type: "Fairy",    stats:{ hp:70, attack:45, defense:48, spAtk:60, spDef:65, speed:35 }, baseExp: 113 },
+  { id: 39, name: "Jigglypuff", type: "Normal",   stats:{ hp:115, attack:45, defense:20, spAtk:45, spDef:25, speed:20 }, baseExp: 95 },
+  { id: 52, name: "Meowth",     type: "Normal",   stats:{ hp:40, attack:45, defense:35, spAtk:40, spDef:40, speed:90 }, baseExp: 58 },
+];
 
-
-
-const chartTypeSelect = document.getElementById('chartType');
-const monthFilterSelect = document.getElementById('monthFilter');
-
-const originalLabels = ['January', 'February', 'March', 'April', 'May', 'June'];
-const originalData = [12, 19, 3, 5, 2, 3];
-
-const chartData = {
-    labels: [...originalLabels],
-    datasets: [{
-        label: 'Sample Data',
-        data: [...originalData],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 2,
-        tension: 0.1,
-        fill: true
-    }]
-};
-
-const config = {
-    type: 'line',
-    data: chartData,
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-};
-
-
-const myChart = new Chart(ctx, config);
-
-function updateChart() {
-    const selectedMonth = monthFilterSelect.value;
-    const selectedType = chartTypeSelect.value;
-    
-    let filteredLabels = [...originalLabels];
-    let filteredData = [...originalData];
-
-    if (selectedMonth !== 'all') {
-        const monthIndex = originalLabels.indexOf(selectedMonth);
-        if (monthIndex !== -1) {
-            filteredLabels = [originalLabels[monthIndex]];
-            filteredData = [originalData[monthIndex]];
-        }
-    }
-
-    myChart.config.type = selectedType;
-    myChart.data.labels = filteredLabels;
-    myChart.data.datasets[0].data = filteredData;
-    myChart.update();
+// Helpers
+function groupByType(rows) {
+  const map = new Map();
+  for (const p of rows) {
+    if (!map.has(p.type)) map.set(p.type, []);
+    map.get(p.type).push(p);
+  }
+  return map;
 }
+const average = arr => arr.length ? arr.reduce((a,b)=>a+b,0) / arr.length : 0;
 
-chartTypeSelect.addEventListener('change', updateChart);
-monthFilterSelect.addEventListener('change', updateChart);
+// =======================
+// 1) Torta: Pokémon por Tipo
+// =======================
+(function renderPieTipos(){
+  const byType = groupByType(pokemons);
+  const labels = [...byType.keys()];
+  const data = labels.map(t => byType.get(t).length);
 
-
-
-new Chart(document.getElementById('histogramaChart'), {
-    type: 'bar',
-    data: {
-        labels: ['0-10', '10-20', '20-30', '30-40', '40+'],
-        datasets: [{
-            label: 'Cantidad',
-            data: [5, 15, 25, 10, 3],
-            backgroundColor: '#f28e2c'
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: false }
-        }
-    }
-});
-
-
-new Chart(document.getElementById('lineChart'), {
-    type: 'line',
-    data: {
-        labels: ['6 AM', '9 AM', '12 PM', '3 PM', '6 PM'],
-        datasets: [{
-            label: 'Voltaje (kV)',
-            data: [220, 230, 225, 215, 210],
-            borderColor: '#e15759',
-            tension: 0.4,
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { position: 'top' }
-        }
-    }
-});
-
-new Chart(document.getElementById('doughnutChart'), {
+  new Chart(document.getElementById('chartTipos'), {
     type: 'doughnut',
-    data: {
-        labels: ['Excavadoras', 'Camiones', 'Trituradoras'],
-        datasets: [{
-            data: [40, 30, 30],
-            backgroundColor: ['#76b7b2', '#59a14f', '#edc948']
-        }]
-    },
+    data: { labels, datasets: [{ data }] },
     options: {
-        responsive: true,
-        plugins: {
-            legend: { position: 'right' }
-        }
+      responsive: true,
+      maintainAspectRatio: false,          
+      plugins: {
+        legend: { position: 'right' },
+        title: { display: true, text: 'Pokémon por Tipo' }
+      }
     }
-});
-new Chart(document.getElementById('barChart'), {
+  });
+})();
+
+// =======================
+// 2) Barras: Ataque promedio por Tipo
+// =======================
+(function renderBarAtaque(){
+  const byType = groupByType(pokemons);
+  const labels = [...byType.keys()];
+  const data = labels.map(t => average(byType.get(t).map(p => p.stats.attack)));
+
+  new Chart(document.getElementById('chartAtaque'), {
     type: 'bar',
+    data: { labels, datasets: [{ label: 'Atk promedio', data }] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,          
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Ataque' } },
+        x: { title: { display: true, text: 'Tipo' } }
+      }
+    }
+  });
+})();
+
+// =======================
+// 3) Radar: Comparativa de Stats promedio
+// =======================
+(function renderRadarPromedios(){
+  const statsKeys = ['hp','attack','defense','spAtk','spDef','speed'];
+  const labels = ['HP','ATK','DEF','SpA','SpD','SPE'];
+  const avgStats = statsKeys.map(k => average(pokemons.map(p => p.stats[k])));
+
+  new Chart(document.getElementById('chartRadar'), {
+    type: 'radar',
     data: {
-        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie'],
-        datasets: [{
-            label: 'Toneladas',
-            data: [120, 150, 180, 100, 200],
-            backgroundColor: '#4e79a7'
-        }]
+      labels,
+      datasets: [{ label: 'Promedio Global', data: avgStats }]
     },
     options: {
-        responsive: true,
-        plugins: {
-            legend: { display: false }
-        }
+      responsive: true,
+      maintainAspectRatio: false,          
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'Comparativa de Stats Promedio' }
+      },
+      scales: { r: { beginAtZero: true } }
     }
-});
+  });
+})();
+
+// =======================
+// 4) Línea: Base EXP por ID
+// =======================
+(function renderLineaExp(){
+  const sorted = [...pokemons].sort((a,b)=>a.id-b.id);
+  const labels = sorted.map(p => p.id);
+  const data = sorted.map(p => p.baseExp);
+
+  new Chart(document.getElementById('chartLinea'), {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Base EXP', data, fill:false, tension:0.3 }] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,          
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'Experiencia Base por ID' }
+      },
+      scales: {
+        y: { beginAtZero: false, title: { display: true, text: 'Base EXP' } },
+        x: { title: { display: true, text: 'ID' } }
+      }
+    }
+  });
+})();

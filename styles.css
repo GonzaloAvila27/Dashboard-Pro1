@@ -1,128 +1,134 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
+/* -------- Reset básico y layout general -------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
 body {
-    display: flex;
-    height: 100vh;
-    background-color: #f4f4f4;
-    overflow: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1b1b1b;
+  background: #f6f7f9;
+  display: flex;
 }
+
+/* -------- Sidebar fijo -------- */
 .sidebar {
-    width: 60px;
-    background-color: #0b2a4a;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 72px;
+  background: #121826;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  gap: 12px;
+  z-index: 10;
 }
 .sidebar .logo {
-    font-size: 24px;
-    margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: .5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.nav-icons {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
 }
 .nav-icons button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    margin: 20px 0;
-    cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 12px;
+  background: #1b2233;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
 }
+.nav-icons button:hover { background:#232c43; }
+
+/* -------- Panel de configuración deslizable -------- */
 .panel-config {
-    width: 25vh;
-    background-color: #ffffff;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    flex-shrink: 0;
-    overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 100%);
+  height: 100vh;
+  background: #fff;
+  box-shadow: -10px 0 20px rgba(0,0,0,.06);
+  padding: 16px 18px;
+  overflow: auto;
+  z-index: 20;
+  transition: transform .25s ease;
 }
-.panel-config.oculto {
-    display: none;
-}
+.panel-config.oculto { transform: translateX(100%); }
+
+/* -------- Contenido principal -------- */
 .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  margin-left: 72px;       
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 72px);
+  height: 100vh;
+  min-height: 0;           
 }
-header {
-    background-color: #0b2a4a;
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
+
+/* Header superior */
+.main-content > header {
+  height: 56px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8ebf0;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
+
+/* -------- Grid de dashboards -------- */
 section.cajaDashboar {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto;
+  flex: 1;
+  min-height: 0;                    
+                  
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-auto-rows: minmax(320px, 1fr); 
 }
+
+/* Tarjeta de cada gráfico */
 .Dashboard {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  background: #ffffff;
+  border: 1px solid #e8ebf0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  overflow: hidden;
 }
+
 .headerDash {
-    padding: 10px;
-    background-color: #eeeeee;
-    font-weight: bold;
+  padding: 10px 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #eef1f6;
+  background: #fafbfc;
 }
+
 .dashboardProper {
-    flex: 1;
-    padding: 10px;
-}
-.myChart {
-    max-width: fit-content;
-    margin: 3px auto;
-    background: white;
-    padding: 5px;
-    border-radius: 1px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  padding: 10px;
 }
 
-
-@media (max-width: 768px) {
-    section.cajaDashboar {
-        grid-template-columns: 1fr;
-    }
-    .sidebar {
-        width: 50px;
-    }
-    .nav-icons button {
-        font-size: 20px;
-    }
-    .panel-config {
-        width: 100%;
-    }
-} 
+/* Canvas a tamaño completo del contenedor */
 canvas {
-    display: flex;
-    width: 100% !important;
-    height: auto !important;
-} 
-.filters {
-    display: relative;
-    gap: 2px;
-    margin-bottom: 5px;
-    align-self: top;
-}
-
-.filters div {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-select {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+  display: block;                
+  width: 100% !important;
+  height: 100% !important;
 }
